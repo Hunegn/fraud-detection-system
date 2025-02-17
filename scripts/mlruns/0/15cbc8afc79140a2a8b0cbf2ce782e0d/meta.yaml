@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/scripts/mlruns/0/15cbc8afc79140a2a8b0cbf2ce782e0d/artifacts
+end_time: 1739742398490
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 15cbc8afc79140a2a8b0cbf2ce782e0d
+run_name: colorful-midge-399
+run_uuid: 15cbc8afc79140a2a8b0cbf2ce782e0d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739742397740
+status: 4
+tags: []
+user_id: hunegna

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/scripts/mlruns/0/8dd594984dba4ef68f464f955586f32b/artifacts
+end_time: 1739827933873
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8dd594984dba4ef68f464f955586f32b
+run_name: rare-ray-215
+run_uuid: 8dd594984dba4ef68f464f955586f32b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739827933814
+status: 4
+tags: []
+user_id: hunegna

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/scripts/mlruns/0/67d505c0af3e435eb529575ca8d6dd24/artifacts
+end_time: 1739742526164
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 67d505c0af3e435eb529575ca8d6dd24
+run_name: sassy-toad-458
+run_uuid: 67d505c0af3e435eb529575ca8d6dd24
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739742525148
+status: 4
+tags: []
+user_id: hunegna

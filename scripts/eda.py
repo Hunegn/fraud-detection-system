@@ -3,6 +3,9 @@ import numpy as np
 import socket
 import struct
 import logging
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 
 # Setup logging
@@ -42,11 +45,11 @@ class FraudDataPreprocessor:
 
     def clean_data(self):
         logging.info("Cleaning data...")
-        # Remove duplicates
+        
         self.data = self.data.drop_duplicates()
         logging.info(f"Data shape after dropping duplicates: {self.data.shape}")
 
-        # Convert time columns to datetime (assumes column names 'purchase_time' and 'signup_time')
+        
         self.data['purchase_time'] = pd.to_datetime(self.data['purchase_time'], errors='coerce')
         self.data['signup_time'] = pd.to_datetime(self.data['signup_time'], errors='coerce')
 
@@ -65,7 +68,7 @@ class FraudDataPreprocessor:
         logging.info("Converting IP addresses to integers...")
         self.data['ip_int'] = self.data['ip_address'].apply(ip_to_int)
         
-        # Convert IP range bounds to integers in the ip_df
+       
         self.ip_df['lower_bound_ip'] = self.ip_df['lower_bound_ip_address'].apply(ip_to_int)
         self.ip_df['upper_bound_ip'] = self.ip_df['upper_bound_ip_address'].apply(ip_to_int)
         
@@ -75,18 +78,45 @@ class FraudDataPreprocessor:
     def exploratory_analysis(self):
         logging.info("Performing exploratory data analysis...")
         
-        # Log summary statistics for numeric columns only
+        
+        plots_dir = "plots"
+        os.makedirs(plots_dir, exist_ok=True)
+        
         numeric_data = self.data.select_dtypes(include=[np.number])
         logging.info("Summary statistics (numeric):\n" + str(numeric_data.describe()))
+        for col in numeric_data.columns:
+            plt.figure(figsize=(8, 4))
+            sns.histplot(numeric_data[col], kde=True)
+            plt.title(f"Distribution of {col}")
+            plot_filename = os.path.join(plots_dir, f"distribution_{col}.png")
+            plt.savefig(plot_filename)
+            plt.close()
+            logging.info(f"Saved univariate plot for {col} as {plot_filename}")
         
-        # Compute correlation only on numeric data
+        # Bivariate Analysis: Correlation Matrix
         corr = numeric_data.corr()
-        logging.info("Correlation matrix:\n" + str(corr))
-
-    
+        plt.figure(figsize=(12, 10))
+        sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
+        heatmap_filename = os.path.join(plots_dir, "correlation_matrix.png")
+        plt.title("Correlation Matrix")
+        plt.savefig(heatmap_filename)
+        plt.close()
+        logging.info(f"Saved correlation heatmap as {heatmap_filename}")
+        
+        # Bivariate Analysis: Pairplot
+        try:
+            pairplot = sns.pairplot(numeric_data)
+            pairplot.fig.suptitle("Pair Plot of Numeric Features", y=1.02)
+            pairplot_filename = os.path.join(plots_dir, "pairplot.png")
+            pairplot.fig.savefig(pairplot_filename)
+            plt.close(pairplot.fig)
+            logging.info(f"Saved pairplot as {pairplot_filename}")
+        except Exception as e:
+            logging.error("Error generating pairplot: " + str(e))
+        
     def feature_engineering(self):
         logging.info("Performing feature engineering...")
-        # Transaction Frequency: Count transactions per user
+        
         freq_df = self.data.groupby("user_id")["purchase_value"].count().reset_index()
         freq_df.columns = ["user_id", "transaction_count"]
         self.data = self.data.merge(freq_df, on="user_id", how="left")
@@ -131,10 +161,5 @@ class FraudDataPreprocessor:
         self.encode_categorical_features()
         self.save_preprocessed_data()
 
-if __name__ == "__main__":
-    fraud_data_path = "../data/raw/Fraud_Data.csv"
-    ip_data_path = "../data/raw/IpAddress_to_Country.csv"
-    output_path = "../data/processed/processed_fraud_data.csv"
-    
-    preprocessor = FraudDataPreprocessor(fraud_data_path, ip_data_path, output_path)
-    preprocessor.run_pipeline()
+
+

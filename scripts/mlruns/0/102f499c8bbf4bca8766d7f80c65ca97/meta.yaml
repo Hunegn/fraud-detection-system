@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/scripts/mlruns/0/102f499c8bbf4bca8766d7f80c65ca97/artifacts
+end_time: 1739742462227
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 102f499c8bbf4bca8766d7f80c65ca97
+run_name: exultant-mole-127
+run_uuid: 102f499c8bbf4bca8766d7f80c65ca97
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739742459960
+status: 4
+tags: []
+user_id: hunegna

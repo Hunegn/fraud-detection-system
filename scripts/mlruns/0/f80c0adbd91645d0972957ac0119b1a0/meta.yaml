@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/scripts/mlruns/0/f80c0adbd91645d0972957ac0119b1a0/artifacts
+end_time: 1739827054908
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f80c0adbd91645d0972957ac0119b1a0
+run_name: nosy-zebra-944
+run_uuid: f80c0adbd91645d0972957ac0119b1a0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739827053559
+status: 4
+tags: []
+user_id: hunegna

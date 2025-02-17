@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/scripts/mlruns/0/0deb7233596340358107a23eec585177/artifacts
+end_time: 1739827124753
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0deb7233596340358107a23eec585177
+run_name: lyrical-rook-961
+run_uuid: 0deb7233596340358107a23eec585177
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739827124368
+status: 4
+tags: []
+user_id: hunegna

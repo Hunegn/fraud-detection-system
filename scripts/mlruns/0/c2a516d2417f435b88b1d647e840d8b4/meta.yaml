@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/scripts/mlruns/0/c2a516d2417f435b88b1d647e840d8b4/artifacts
+end_time: 1739827180741
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c2a516d2417f435b88b1d647e840d8b4
+run_name: rogue-moose-715
+run_uuid: c2a516d2417f435b88b1d647e840d8b4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739827179777
+status: 4
+tags: []
+user_id: hunegna
