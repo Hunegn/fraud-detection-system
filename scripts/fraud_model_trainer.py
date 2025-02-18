@@ -3,6 +3,8 @@ import numpy as np
 import logging
 import mlflow
 import mlflow.sklearn
+import joblib
+import os
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report
 from sklearn.linear_model import LogisticRegression
@@ -24,6 +26,8 @@ class FraudModelTrainer:
         self.data = None
         self.X_train, self.X_test, self.y_train, self.y_test = None, None, None, None
         self.models = {}
+        # Ensure that the models directory exists
+        os.makedirs("models", exist_ok=True)
         logging.info("FraudModelTrainer initialized.")
 
     def load_data(self):
@@ -35,7 +39,7 @@ class FraudModelTrainer:
     def prepare_data(self):
         """Separate features and target, then split data into training and testing sets."""
         logging.info("Preparing data...")
-        # Drop non-numeric columns from features (adjust as needed) 
+        # Drop non-numeric columns from features (adjust as needed)
         X = self.data.drop(columns=[self.target_col]).select_dtypes(include=[np.number])
         y = self.data[self.target_col]
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
@@ -79,7 +83,14 @@ class FraudModelTrainer:
         
         logging.info(f"{model_name} - Accuracy: {acc}, Precision: {prec}, Recall: {rec}, F1: {f1}, ROC-AUC: {roc_auc}")
         print(f"\n{model_name} Evaluation:\n", classification_report(self.y_test, y_pred))
+        
+        # Log model with MLflow
         mlflow.sklearn.log_model(best_model, model_name)
+        
+        # Save model 
+        model_filename = f"models/{model_name.replace(' ', '_')}.pkl"
+        joblib.dump(best_model, model_filename)
+        logging.info(f"Saved {model_name} model to {model_filename}")
         
         return best_model
 
@@ -111,6 +122,5 @@ class FraudModelTrainer:
             mlflow.end_run()
 
 if __name__ == "__main__":
-  
     trainer = FraudModelTrainer(data_path="../data/raw/Fraud_Data.csv", target_col="class")
     trainer.run_training()

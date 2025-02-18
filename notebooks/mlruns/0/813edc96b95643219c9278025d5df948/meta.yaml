@@ -1,0 +1,15 @@
+artifact_uri: file:///home/hunegna/10x/10x_projects/fraud-detection-system/notebooks/mlruns/0/813edc96b95643219c9278025d5df948/artifacts
+end_time: 1739900362561
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 813edc96b95643219c9278025d5df948
+run_name: monumental-smelt-316
+run_uuid: 813edc96b95643219c9278025d5df948
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739899595051
+status: 3
+tags: []
+user_id: hunegna
